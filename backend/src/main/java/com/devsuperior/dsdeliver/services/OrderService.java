@@ -43,4 +43,13 @@ public class OrderService {
 		order = repository.save(order);
 		return new OrderDTO(order);			
 	}
+	
+	@Transactional
+	public OrderDTO setDelivered(Long id){
+		Order order = repository.getOne(id); //instanciei na memoria um pedido sem ir ao banco de dados, pois esta monitorado pelo jpa
+		order.setStatus(OrderStatus.DELIVERED);
+		order = repository.save(order);
+		
+		return new OrderDTO(order);
+	}
 }
