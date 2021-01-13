@@ -4,11 +4,12 @@ import OrderLocation from './OrderLocation';
 import ProductsList from './ProductsList';
 import StepsHeaders from './StepsHeader';
 import './styles.css';
-import { Product } from './types';
+import { OrderLocationData, Product } from './types';
 
 function Orders(){
 
     const[products, setProducts] =useState<Product[]>([]);
+    const [orderLocation, setOrderLocation] = useState<OrderLocationData>();
     //console.log(products)
 
     useEffect(() => {
@@ -22,7 +23,7 @@ function Orders(){
         <div className="orders-container">
             <StepsHeaders />
             <ProductsList products={products}/>
-            <OrderLocation />
+            <OrderLocation onChangeLocation={location => setOrderLocation(location)}/>
         </div>
     )
 }
